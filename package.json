@@ -1,10 +1,11 @@
 {
   "name": "memestore",
   "version": "1.0.0",
-  "description": "Restful API to return an random meme",
+  "description": "Restful API to return a random meme",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
   },
   "author": "Wilker Ribeiro",
   "license": "ISC",

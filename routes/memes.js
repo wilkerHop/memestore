@@ -72,13 +72,14 @@ router.get('/random/tag', (req, res) => {
 })
 
 
-router.get('/random/:video', (req, res) => {
-	Meme.find({'video': true}, (err, cursor) => {
+router.get('/random/:bool', (req, res) => {
+	var bool = (req.param.video == 'false');
+	Meme.find({'video': {$exists: bool}}, (err, cursor) => {
 		if (err) return res.send(err);
 		var len = Math.trunc(Math.random() * cursor.length);		
 		// var video = '<img src="' + cursor[1].link + '">'
 		var video = cursor[len];
-		res.send(img);
+		res.send(video);
 	})
 })
 
