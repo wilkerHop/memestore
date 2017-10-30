@@ -10,20 +10,36 @@ router.get('/', (req, res) => {
 		if (err) return res.send(err);
 		debugger
 
-
 		res.send(cursor);
 	})
 })
 
-router.post('/', (req, res) => {
+router.post('/na/pedra', (req, res) => {
+
+	// var aux = new Meme({
+	// 	nome: 'NANI ??!?!?! squirrel',
+	// 	link: 'https://www.youtube.com/embed/4I7AA8BZSDo',
+	// 	video: true
+	// })
+	// aux.save(aux, (err) => {
+	// 	if (err) return console.log(err);
+	// 	res.send({
+	// 		status: 210,
+	// 		aux
+	// 	})
+	// })
+})
+router.post('/put', (req, res) => {
+
+	// console.log(req.body.nome + '\n' + req.body.link + '\n' + req.body.video + '\n')
 
 	var aux = new Meme({
-		nome: 'Força De Vontade',
-		link: '<iframe width="560" height="315" src="https://www.youtube.com/embed/cxJPz7kZaXo" frameborder="0" allowfullscreen></iframe>',
-		video: true
+		nome: req.body.nome,
+		link: req.body.link,
+		video: req.body.video
 	})
 	aux.save(aux, (err) => {
-		if (err) return console.log(err);
+		if (err) return console.log('fodeo');
 		res.send({
 			status: 210,
 			aux
@@ -39,26 +55,41 @@ router.get('/random', (req, res) => {
 	Meme.find({}, (err, cursor) => {
 		if (err) return res.send(err);
 		var len = Math.trunc(Math.random() * cursor.length);
-		console.log(cursor[len].video)
+		res.send(cursor[len]);
+	})
+})
+
+// <iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/cxJPz7kZaXo\" frameborder=\"0\" allowfullscreen><\/iframe>
+
+router.get('/random/tag', (req, res) => {
+	Meme.find({}, (err, cursor) => {
+		if (err) return res.send(err);
+		var len = Math.trunc(Math.random() * cursor.length);
 		if (!cursor[len].video) var content = '<img src="' + cursor[len].link + '">';
-		else var content = cursor[len].link;
-		// res.send(cursor[1].link);
+		else var content = '<iframe width="560" height="315" src="' + cursor[len].link + '" frameborder="0" allowfullscreen></iframe>';
 		res.send(content);
 	})
 })
 
 
 router.get('/random/:video', (req, res) => {
-	Meme.find({}, (err, cursor) => {
+	Meme.find({'video': true}, (err, cursor) => {
 		if (err) return res.send(err);
-		var img = '<img src="' + cursor[1].link + '">'
-		// res.send(cursor[1].link);
+		var len = Math.trunc(Math.random() * cursor.length);		
+		// var video = '<img src="' + cursor[1].link + '">'
+		var video = cursor[len];
 		res.send(img);
 	})
 })
 
-function randomInt(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+router.get('/random/tag/:video', (req, res) => {
+	Meme.find({'video': true}, (err, cursor) => {
+		if (err) return res.send(err);
+		var len = Math.trunc(Math.random() * cursor.length);		
+		// var video = '<img src="' + cursor[1].link + '">'
+		var video = cursor[len];
+		res.send(img);
+	})
+})
 
 module.exports = router;
