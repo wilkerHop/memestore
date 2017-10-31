@@ -39,3 +39,16 @@ Retorna um objeto aleatório da base nesse naipe:
 Existe a opção de usar um paramêtro que se for `true` vai apenas retornar imagens, ou se for `false` vai apenas retornar vídeos. 
 
 ### GET em __/meme/random/tag/*:boolean*__
+Retorna uma tag HTML com o link da coleção aleatória gerada.
+
+Para imagens:
+```html
+<img class="img-responsive" src="http://wilker.site/meme.gif">
+```
+Para vídeos:
+```html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9mQnsFrkrBk" frameborder="0" allowfullscreen></iframe>
+```
+A opção do paramêtro booleano também é disponível aqui.
+
+##
