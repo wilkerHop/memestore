@@ -19,11 +19,13 @@ nome = String;
 link = String;
 video = Boolean;
 ```
-Sendo que *nome* e *link* são obrigatórios e *video* só é necessário quando for inserir um vídeo.
+Sendo que `nome` e `link` são obrigatórios e `video` só é necessário quando for inserir um vídeo.
+
+Mande os dados pelo `body` da `request`.
 
 *OBS:* NÃO USE *video* SE FOR INSERIR UMA IMAGEM !!!
 
-### GET em __/meme/random__
+### GET em __/meme/random/*:boolean*__
 Retorna um objeto aleatório da base nesse naipe:
 ```json
 {
@@ -34,9 +36,8 @@ Retorna um objeto aleatório da base nesse naipe:
     "__v": 0
 }
 ```
+Existe a opção de um paramêtro que se for
 
-### GET em __/meme/random/*:boolean*__
-Retorna
 
 ### GET em __/meme/random/tag__
 
