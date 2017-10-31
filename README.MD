@@ -51,4 +51,12 @@ Para vídeos:
 ```
 A opção do paramêtro booleano também é disponível aqui.
 
-##
+# ToDo
+* Permitir imagens com `video`. 
+
+# Dependências
+* [Express.js](https://www.npmjs.com/package/express "Express in NPM")
+* [Body-Parser](https://www.npmjs.com/package/body-parser "Body Parser in NPM")
+* [Mongoose](https://www.npmjs.com/package/mongoose "Mongoose in NPM")
+
+###### #paz
