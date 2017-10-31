@@ -4,7 +4,7 @@
 É um projeto de uma API Restful que retorna memes aleatórios.
 
 ### Colocando pra funcionar
-Todas dependências estão no *package.json*, você só precisa dar um ` npm i ` e pronto! Estamos servindo na porta 3000 **;D**
+Todas dependências estão no *[package.json](./package.json)*, você só precisa dar um ` npm i ` e pronto! Estamos servindo na porta 3000 **;D**
 
 ## Rotas
 O **/** não retorna nada importante. Vamos focar no **/meme**
@@ -52,7 +52,7 @@ Para vídeos:
 A opção do paramêtro booleano também é disponível aqui.
 
 # ToDo
-* Permitir imagens com `video`. 
+* Permitir imagens com a característica `video`. 
 
 # Dependências
 * [Express.js](https://www.npmjs.com/package/express "Express in NPM")
