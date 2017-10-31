@@ -10,7 +10,8 @@ var MemeSchema = mongoose.Schema({
 	// link na web
 	link: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	// se é um vídeo
 	video: {

@@ -29,22 +29,27 @@ router.post('/na/pedra', (req, res) => {
 	// 	})
 	// })
 })
-router.post('/put', (req, res) => {
-
-	// console.log(req.body.nome + '\n' + req.body.link + '\n' + req.body.video + '\n')
+router.post('/post', (req, res) => {
+	var video;
+	
+	if (!('boolean' == typeof req.body.video))
+		video = (req.body.video == 'true');
+	else video = req.body.video;
 
 	var aux = new Meme({
 		nome: req.body.nome,
 		link: req.body.link,
-		video: req.body.video
+		video
 	})
 	aux.save(aux, (err) => {
 		if (err) return console.log('fodeo');
 		res.send({
-			status: 210,
+			status: 200,
+			err,
 			aux
 		})
 	})
+	// res.send(aux);
 })
 
 router.get('/get', (req, res) => {
@@ -59,37 +64,43 @@ router.get('/random', (req, res) => {
 	})
 })
 
-// <iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/cxJPz7kZaXo\" frameborder=\"0\" allowfullscreen><\/iframe>
-
 router.get('/random/tag', (req, res) => {
 	Meme.find({}, (err, cursor) => {
 		if (err) return res.send(err);
 		var len = Math.trunc(Math.random() * cursor.length);
-		if (!cursor[len].video) var content = '<img src="' + cursor[len].link + '">';
+		if (!cursor[len].video) var content = '<img class="img-responsive" src="' + cursor[len].link + '">';
 		else var content = '<iframe width="560" height="315" src="' + cursor[len].link + '" frameborder="0" allowfullscreen></iframe>';
 		res.send(content);
 	})
 })
 
-
 router.get('/random/:bool', (req, res) => {
-	var bool = (req.param.video == 'false');
-	Meme.find({'video': {$exists: bool}}, (err, cursor) => {
+	var bool = (req.params.bool == 'false');
+	Meme.find({
+		'video': {
+			$exists: bool
+		}
+	}, (err, cursor) => {
 		if (err) return res.send(err);
-		var len = Math.trunc(Math.random() * cursor.length);		
+		var len = Math.trunc(Math.random() * cursor.length);
 		// var video = '<img src="' + cursor[1].link + '">'
 		var video = cursor[len];
 		res.send(video);
 	})
 })
 
-router.get('/random/tag/:video', (req, res) => {
-	Meme.find({'video': true}, (err, cursor) => {
+router.get('/random/tag/:bool', (req, res) => {
+	var bool = (req.params.bool == 'false');
+	Meme.find({
+		'video': {
+			$exists: bool
+		}
+	}, (err, cursor) => {
 		if (err) return res.send(err);
-		var len = Math.trunc(Math.random() * cursor.length);		
-		// var video = '<img src="' + cursor[1].link + '">'
-		var video = cursor[len];
-		res.send(img);
+		var len = Math.trunc(Math.random() * cursor.length);
+		if (!cursor[len].video) var content = '<img class="img-responsive" src="' + cursor[len].link + '">';
+		else var content = '<iframe width="560" height="315" src="' + cursor[len].link + '" frameborder="0" allowfullscreen></iframe>';
+		res.send(content);
 	})
 })
 
