@@ -21,9 +21,22 @@ video = Boolean;
 ```
 Sendo que *nome* e *link* são obrigatórios e *video* só é necessário quando for inserir um vídeo.
 
+*OBS:* NÃO USE *video* SE FOR INSERIR UMA IMAGEM !!!
+
 ### GET em __/meme/random__
+Retorna um objeto aleatório da base nesse naipe:
+```json
+{
+    "_id": "59f7e1e2b286c8141de6d456",
+    "nome": "vo cai",
+    "link": "https://www.youtube.com/embed/9mQnsFrkrBk",
+    "video": true,
+    "__v": 0
+}
+```
 
 ### GET em __/meme/random/*:boolean*__
+Retorna
 
 ### GET em __/meme/random/tag__
 
