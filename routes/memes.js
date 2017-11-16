@@ -33,15 +33,26 @@ router.post('/na/pedra', (req, res) => {
 router.post('/post', (req, res) => {
 	var video;
 
-	if (!('boolean' == typeof req.body.video))
-		video = (req.body.video == 'true');
-	else video = req.body.video;
+	// se video não for booleano
+	if (!('boolean' == typeof req.body.video)) {
+		// seta video como booleano
+		if (req.body.video == 'true') video = true;
+		else if (req.body.video == 'false') video = false;
+		else video = 'undefined'
+	} else video = req.body.video;
 
-	var aux = new Meme({
-		nome: req.body.nome,
-		link: req.body.link,
-		video
-	})
+	if (video == 'undefined')
+		var aux = new Meme({
+			nome: req.body.nome,
+			link: req.body.link
+		});
+	else
+		var aux = new Meme({
+			nome: req.body.nome,
+			link: req.body.link,
+			video
+		});
+
 	aux.save(aux, (err) => {
 		if (err) return console.log('fodeo');
 		res.send({
