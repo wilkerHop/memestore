@@ -1,1 +1,1 @@
-git add . && git commit -m 'readme' && git push origin master
+git add . && git commit -m '/post bug fix' && git push origin master
