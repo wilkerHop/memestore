@@ -8,7 +8,6 @@ var Meme = require('../models/meme');
 router.get('/', (req, res) => {
 	Meme.find({}, (err, cursor) => {
 		if (err) return res.send(err);
-		debugger
 
 		res.send(cursor);
 	})
@@ -41,12 +40,16 @@ router.post('/post', (req, res) => {
 		else video = 'undefined'
 	} else video = req.body.video;
 
+	// se video não for boolean
 	if (video == 'undefined')
+		// o meme não é video
 		var aux = new Meme({
 			nome: req.body.nome,
 			link: req.body.link
 		});
+	// se for boolean
 	else
+		// o meme é um video
 		var aux = new Meme({
 			nome: req.body.nome,
 			link: req.body.link,
